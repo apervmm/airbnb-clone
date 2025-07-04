@@ -22,16 +22,17 @@ const Modal: React.FC<ModalProps> = ({
         setShowModal(isOpen);
     }, [isOpen]);
 
-    if (!isOpen) {
-        return null;
-    }
-
     const handleClose = useCallback(() => {
         setShowModal(false);
         setTimeout(() => {
             close();
         }, 300);
     }, [close]);
+
+
+    if (!isOpen) {
+        return null;
+    }
 
     return (
         <div className="flex items-center justify-center fixed inset-0 z-50 bg-black/60">
@@ -40,7 +41,10 @@ const Modal: React.FC<ModalProps> = ({
                     <div className="w-full h-auto rounded-xl relative flex flex-col bg-white">
                         
                         <header className="h-[60px] flex items-center justify-center p-6 rounded-t relative border-b">
-                            <div className="p-3 absolute left-3 hover:bg-gray-100 rounded-full cursor-pointer">
+                            <div
+                                onClick={handleClose}
+                                className="p-3 absolute left-3 hover:bg-gray-100 rounded-full cursor-pointer"
+                            >
                                 <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                                 </svg>
